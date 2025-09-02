@@ -1,0 +1,294 @@
+<!-- Save this as index.html and upload to htdocs via File Manager or FTP -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>ShareToLive</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Google Fonts & AOS -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      transition: all 0.3s ease;
+      --bg: #f0f0f0;
+      --text: #111;
+    }
+
+    body.dark-mode {
+      --bg: #1f1f1f;
+      --text: #f9f9f9;
+    }
+
+    header {
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #2c3e50;
+      color: white;
+    }
+
+    .hero {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      padding: 3rem 2rem;
+      background: linear-gradient(to right, #16a085, #27ae60);
+      color: white;
+      text-align: center;
+    }
+
+    .hero img {
+      width: 300px;
+      margin: 20px;
+      border-radius: 10px;
+    }
+
+    .cta-buttons {
+      margin-top: 1.5rem;
+    }
+
+    .cta-buttons a {
+      text-decoration: none;
+      background: white;
+      color: #27ae60;
+      padding: 0.8rem 1.5rem;
+      margin: 0.5rem;
+      border-radius: 25px;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+
+    .cta-buttons a:hover {
+      background: #2ecc71;
+      color: white;
+    }
+
+    section {
+      padding: 3rem 2rem;
+      text-align: center;
+    }
+
+    h2 {
+      margin-bottom: 1.5rem;
+      font-size: 2rem;
+    }
+
+    .counter-box {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .counter {
+      background: #fff;
+      padding: 1.5rem;
+      border-radius: 15px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      width: 150px;
+    }
+
+    .slider {
+      max-width: 800px;
+      margin: auto;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .slides {
+      display: flex;
+      transition: transform 0.5s ease-in-out;
+    }
+
+    .slide {
+      min-width: 100%;
+      box-sizing: border-box;
+      padding: 1rem;
+    }
+
+    .chart-container {
+      max-width: 700px;
+      margin: 2rem auto;
+    }
+
+    .faq, .partners, .volunteer-form {
+      max-width: 700px;
+      margin: auto;
+      text-align: left;
+    }
+
+    .faq h3, .partners h3 {
+      margin: 1rem 0 0.5rem;
+    }
+
+    .toggle-mode {
+      background: none;
+      color: white;
+      border: 1px solid white;
+      padding: 0.5rem 1rem;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+
+    footer {
+      background: #34495e;
+      color: white;
+      text-align: center;
+      padding: 1rem;
+    }
+  </style>
+
+</head>
+<body>
+
+  <header>
+    <h1>ShareToLive</h1>
+    <button class="toggle-mode" onclick="toggleMode()">Toggle Mode</button>
+  </header>
+
+  <div class="hero" data-aos="fade-up">
+    <div>
+      <h2>Bridging Hunger Gaps with Compassion</h2>
+      <p>Connecting food donors with those in urgent need. Reduce waste, feed lives.</p>
+      <div class="cta-buttons">
+        <a href="login.php">Login</a>
+        <a href="register.php">Register</a>
+      </div>
+    </div>
+    <img src="https://images.unsplash.com/photo-1556911220-e15b29be8c8f" alt="Illustration">
+  </div>
+
+  <section data-aos="fade-up">
+    <h2>Live Impact</h2>
+    <div class="counter-box">
+      <div class="counter"><h3 id="meals">0</h3><p>Meals Shared</p></div>
+      <div class="counter"><h3 id="donors">0</h3><p>Donors</p></div>
+      <div class="counter"><h3 id="cities">0</h3><p>Cities Covered</p></div>
+    </div>
+  </section>
+
+  <section data-aos="fade-up">
+    <h2>Testimonials</h2>
+    <div class="slider">
+      <div class="slides" id="slides">
+        <div class="slide"><strong>🌟 "This platform is life-changing!"</strong><br>- NGO Volunteer</div>
+        <div class="slide"><strong>🍽 "We feed 100+ daily thanks to ShareToLive."</strong><br>- Restaurant Owner</div>
+        <div class="slide"><strong>🚚 "Volunteering has never been so fulfilling."</strong><br>- Delivery Partner</div>
+      </div>
+    </div>
+  </section>
+
+  <section data-aos="fade-up">
+    <h2>Donation Trends</h2>
+    <div class="chart-container">
+      <canvas id="donationChart"></canvas>
+    </div>
+  </section>
+
+  <section data-aos="fade-up">
+    <h2>Success Stories</h2>
+    <p>In Chennai, a mega kitchen donated surplus food that served over 500 kids in a shelter...</p>
+  </section>
+
+  <section class="volunteer-form" data-aos="fade-up">
+    <h2>Volunteer With Us</h2>
+    <form>
+      <label>Name:</label><br><input type="text"><br>
+      <label>Email:</label><br><input type="email"><br>
+      <label>Preferred Role:</label><br>
+      <select>
+        <option>Pickup Partner</option>
+        <option>NGO Coordinator</option>
+        <option>Awareness Volunteer</option>
+      </select><br><br>
+      <button type="submit">Submit</button>
+    </form>
+  </section>
+
+  <section class="faq" data-aos="fade-up">
+    <h2>FAQs</h2>
+    <h3>How can I donate food?</h3>
+    <p>Simply register and list the items you want to donate with quantity and pickup details.</p>
+    <h3>What happens after I post?</h3>
+    <p>Nearby NGOs or volunteers will be notified for pickup coordination.</p>
+  </section>
+
+  <section class="partners" data-aos="fade-up">
+    <h2>Our Partners</h2>
+    <p>❤ Food4All • GreenEarth Foundation • FeedTheStrays • Swiggy HungerBox</p>
+  </section>
+
+  <footer>
+    &copy; 2025 ShareToLive. All Rights Reserved.
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script>
+    AOS.init();
+
+    function animateCount(el, start, end, speed) {
+      let current = start;
+      const increment = end / 50;
+      const timer = setInterval(() => {
+        current += increment;
+        if (current >= end) {
+          el.innerText = end;
+          clearInterval(timer);
+        } else {
+          el.innerText = Math.floor(current);
+        }
+      }, speed);
+    }
+
+    window.addEventListener('load', () => {
+      animateCount(document.getElementById('meals'), 0, 14250, 30);
+      animateCount(document.getElementById('donors'), 0, 320, 40);
+      animateCount(document.getElementById('cities'), 0, 48, 50);
+    });
+
+    const ctx = document.getElementById('donationChart').getContext('2d');
+    const donationChart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May'],
+        datasets: [{
+          label: 'Meals Donated',
+          data: [1500, 3000, 2800, 3500, 4200],
+          backgroundColor: '#27ae60'
+        }]
+      },
+      options: {
+        responsive: true,
+        scales: {
+          y: { beginAtZero: true }
+        }
+      }
+    });
+
+    let index = 0;
+    setInterval(() => {
+      index = (index + 1) % 3;
+      document.getElementById('slides').style.transform = `translateX(-${index * 100}%)`;
+    }, 3000);
+
+    function toggleMode() {
+      document.body.classList.toggle('dark-mode');
+    }
+  </script>
+</body>
+</html>

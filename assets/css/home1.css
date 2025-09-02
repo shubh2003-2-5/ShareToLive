@@ -1,0 +1,129 @@
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(to right, #a1c4fd, #c2e9fb);
+    overflow-x: hidden;;
+  }
+  
+  .hero {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5% 10%;
+    z-index: 2;
+    position: relative;
+  }
+  
+  .content {
+    max-width: 50%;
+    color: #222;
+    animation: fadeIn 1.5s ease-in;
+  }
+  
+  .content h1 {
+    font-size: 3.5em;
+    margin-bottom: 0.2em;
+    color: #0b3954;
+  }
+  
+  .content .tagline {
+    font-size: 1.5em;
+    color: #2c3e50;
+    margin-bottom: 1em;
+  }
+  
+  .content .description {
+    font-size: 1.1em;
+    line-height: 1.6em;
+    margin-bottom: 2em;
+    color: #333;
+  }
+  
+  .cta-buttons {
+    display: flex;
+    gap: 20px;
+  }
+  
+  .btn {
+    padding: 12px 30px;
+    border: none;
+    border-radius: 30px;
+    font-weight: bold;
+    text-decoration: none;
+    font-size: 1em;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+  }
+  
+  .login {
+    background-color: #28a745;
+    color: white;
+  }
+  
+  .login:hover {
+    background-color: #218838;
+  }
+  
+  .register {
+    background-color: #007bff;
+    color: white;
+  }
+  
+  .register:hover {
+    background-color: #0056b3;
+  }
+  
+  .illustration img {
+    width: 500px;
+    animation: float 4s ease-in-out infinite;
+  }
+  
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+  }
+  
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  .bg-animation {
+    position: absolute;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    z-index: 0;
+    top: 0;
+    left: 0;
+  }
+  
+  .bubbles span {
+    position: absolute;
+    display: block;
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    animation: animate 20s linear infinite;
+    bottom: -150px;
+  }
+  
+  .bubbles span:nth-child(even) {
+    background: rgba(255, 255, 255, 0.2);
+  }
+  
+  @keyframes animate {
+    0% {
+      transform: translateY(0) scale(1);
+    }
+    100% {
+      transform: translateY(-1000px) scale(0.5);
+    }
+  }
+  
+  .bubbles span {
+    left: calc(var(--i) * 10%);
+    animation-duration: calc(20s - var(--i) * 0.5s);
+  }
+  
